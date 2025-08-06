@@ -13,7 +13,7 @@ root.attributes('-fullscreen', True)
 text_area = ScrolledText(root, bg='black', fg='green', insertbackground='green', font=('Courier', 12))
 text_area.pack(expand=True, fill='both')
 
-def fake_print(text, delay=0):
+def fake_print(text, delay=):
     for char in text:
         text_area.insert(tk.END, char)
         text_area.see(tk.END)
@@ -24,7 +24,7 @@ def fake_print(text, delay=0):
 
 # Begin fake hacking
 fake_print("Scanning system files...")
-time.sleep(0)
+time.sleep()
 
 # Collect filenames (just simulate reading)
 home_dir = os.path.expanduser("~")
@@ -35,12 +35,12 @@ for dirpath, dirnames, filenames in os.walk(home_dir):
         time.sleep(0.000000000000000001)
 
 fake_print("\nUploading to tokendarkwet...")
-time.sleep(0)
+time.sleep()
 
 # Simulate upload animation
 for i in range(1, 101):
     fake_print(f"Upload progress: {i}%", delay=0.005)
-    time.sleep(0)
+    time.sleep()
 
 fake_print("\nSuccess. Data breach complete.")
 fake_print("Press ESC to exit.")
