@@ -32,7 +32,7 @@ for dirpath, dirnames, filenames in os.walk(home_dir):
     for filename in filenames:
         filepath = os.path.join(dirpath, filename)
         fake_print(f"[+] Found: {filepath}")
-        time.sleep(0.000000000000000001)
+        time.sleep()
 
 fake_print("\nUploading to tokendarkwet...")
 time.sleep()
