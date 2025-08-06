@@ -1,67 +1,53 @@
-import tkinter as tk
-import itertools
-import threading
+import os
 import time
-import random
+import platform
+import tkinter as tk
+from tkinter.scrolledtext import ScrolledText
 
+# Create full screen green-on-black fake terminal UI
 root = tk.Tk()
-root.title("Fake Hack Terminal")
-root.attributes("-fullscreen", True)  # Make fullscreen
-root.configure(bg="black")
+root.title("Terminal")
+root.configure(bg='black')
+root.attributes('-fullscreen', True)
 
-canvas = tk.Canvas(root, width=100, height=100, bg="black", highlightthickness=0)
-canvas.pack(side=tk.TOP, pady=20)
+text_area = ScrolledText(root, bg='black', fg='green', insertbackground='green', font=('Courier', 12))
+text_area.pack(expand=True, fill='both')
 
-angles = itertools.cycle(range(0, 360, 10))
+def fake_print(text, delay=0.03):
+    for char in text:
+        text_area.insert(tk.END, char)
+        text_area.see(tk.END)
+        root.update()
+        time.sleep(delay)
+    text_area.insert(tk.END, '\n')
+    root.update()
 
-def rotate():
-    canvas.delete("all")
-    canvas.create_rectangle(30, 30, 70, 70, fill='lime')
-    root.after(100, rotate)
+# Begin fake hacking
+fake_print("Scanning system files...")
+time.sleep(1)
 
-rotate()
+# Collect filenames (just simulate reading)
+home_dir = os.path.expanduser("~")
+for dirpath, dirnames, filenames in os.walk(home_dir):
+    for filename in filenames:
+        filepath = os.path.join(dirpath, filename)
+        fake_print(f"[+] Found: {filepath}")
+        time.sleep(0.001)
 
-text = tk.Text(root, bg="black", fg="lime", insertbackground="lime", font=("Courier", 14))
-text.pack(fill=tk.BOTH, expand=True)
+fake_print("\nUploading to tokendarkwet...")
+time.sleep(3)
 
-# Fake list of filenames to simulate scanning
-fake_files = [
-    "secret_plans.docx",
-    "passwords.txt",
-    "bank_info.csv",
-    "private_keys.pem",
-    "project_alpha.zip",
-    "notes.md",
-    "todo.txt",
-    "confidential.pdf"
-]
+# Simulate upload animation
+for i in range(1, 101):
+    fake_print(f"Upload progress: {i}%", delay=0.005)
+    time.sleep(0.01)
 
-fake_data = [
-    "Initializing system scan...",
-    "Reading file structure...",
-]
+fake_print("\nSuccess. Data breach complete.")
+fake_print("Press ESC to exit.")
 
-# Add fake files to output
-for f in fake_files:
-    fake_data.append(f"Found file: {f}")
+# Exit on ESC
+def exit_program(event):
+    root.destroy()
 
-fake_data += [
-    "Uploading files to Tokendarkweb...",
-    "Upload complete.",
-    "Process finished successfully."
-]
-
-def fake_typing():
-    for line in fake_data:
-        for char in line:
-            text.insert(tk.END, char)
-            text.see(tk.END)
-            root.update()
-            time.sleep(0.03 + random.random() * 0.03)
-        text.insert(tk.END, "\n")
-        text.see(tk.END)
-        time.sleep(0.5)
-
-threading.Thread(target=fake_typing, daemon=True).start()
-
+root.bind("<Escape>", exit_program)
 root.mainloop()
