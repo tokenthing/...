@@ -13,7 +13,7 @@ root.attributes('-fullscreen', True)
 text_area = ScrolledText(root, bg='black', fg='green', insertbackground='green', font=('Courier', 12))
 text_area.pack(expand=True, fill='both')
 
-def fake_print(text, delay=0.03):
+def fake_print(text, delay=0):
     for char in text:
         text_area.insert(tk.END, char)
         text_area.see(tk.END)
