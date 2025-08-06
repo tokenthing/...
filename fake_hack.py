@@ -24,7 +24,7 @@ def fake_print(text, delay=0):
 
 # Begin fake hacking
 fake_print("Scanning system files...")
-time.sleep(0.1)
+time.sleep(0)
 
 # Collect filenames (just simulate reading)
 home_dir = os.path.expanduser("~")
@@ -35,12 +35,12 @@ for dirpath, dirnames, filenames in os.walk(home_dir):
         time.sleep(0.000000000000000001)
 
 fake_print("\nUploading to tokendarkwet...")
-time.sleep(3)
+time.sleep(0)
 
 # Simulate upload animation
 for i in range(1, 101):
     fake_print(f"Upload progress: {i}%", delay=0.005)
-    time.sleep(0.01)
+    time.sleep(0)
 
 fake_print("\nSuccess. Data breach complete.")
 fake_print("Press ESC to exit.")
