@@ -24,7 +24,7 @@ def fake_print(text, delay=0.03):
 
 # Begin fake hacking
 fake_print("Scanning system files...")
-time.sleep(1)
+time.sleep(0.1)
 
 # Collect filenames (just simulate reading)
 home_dir = os.path.expanduser("~")
@@ -32,7 +32,7 @@ for dirpath, dirnames, filenames in os.walk(home_dir):
     for filename in filenames:
         filepath = os.path.join(dirpath, filename)
         fake_print(f"[+] Found: {filepath}")
-        time.sleep(0.001)
+        time.sleep(0.000000000000000001)
 
 fake_print("\nUploading to tokendarkwet...")
 time.sleep(3)
