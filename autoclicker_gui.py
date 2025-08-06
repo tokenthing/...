@@ -116,4 +116,4 @@ if __name__ == "__main__":
         sys.exit(1)
     root = tk.Tk()
     app = AutoClickerApp(root)
-    root.mainloop()autoclicker_gui.py
+    root.mainloop()
